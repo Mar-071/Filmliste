@@ -11,6 +11,18 @@ document.getElementById('new-movie').addEventListener('submit', function (event)
     showMovies();
 });
 
+
+document.getElementById('pick-random').addEventListener('click', function () {
+    const randomIndex = Math.floor(Math.random() * movies.length);
+    document.getElementById('chosen-movie').textContent = movies[randomIndex];
+});
+
+
+function removeMovie(i) {
+    movies.splice(i, 1);
+    showMovies();
+    
+}
 // Viser filmene
 function showMovies() {
     const list = document.getElementById('movie-list');
@@ -20,6 +32,8 @@ function showMovies() {
         list.innerHTML += `
             <div class="movie-card">
                 <span>${movies[i]}</span>
+                <button class="remove-btn" onclick="removeMovie(${i})">✕</button>
+                
             </div>
         `;
     }
